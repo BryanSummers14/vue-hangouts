@@ -9,7 +9,7 @@
     <v-btn icon>
       <v-icon>apps</v-icon>
     </v-btn>
-    <v-btn icon>
+    <v-btn icon @click="reload">
       <v-icon>refresh</v-icon>
     </v-btn>
     <v-btn icon>
@@ -23,6 +23,9 @@ export default {
   methods: {
     toggleNav () {
       this.$store.dispatch('toggleNavDrawer')
+    },
+    reload () {
+      window.location.reload()
     }
   }
 }

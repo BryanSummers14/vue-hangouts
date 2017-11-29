@@ -1,10 +1,8 @@
 <template>
     <section class="user-card">
         <v-card>
-        <transition name="slide">
-        <v-card-media v-if="!moreInfo" :src="user.picture.large" height="200px" transition="slide-y-transition">
+        <v-card-media :src="user.picture.large" height="200px">
         </v-card-media>
-        </transition>
         <v-card-title primary-title>
           <div>
             <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
@@ -41,9 +39,5 @@ export default {
 <style scoped>
 .card {
   height: 387px !important;
-}
-.slide-leave-active {
-  transition: max-height .5s;
-  max-height: 0;
 }
 </style>

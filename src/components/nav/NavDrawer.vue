@@ -1,16 +1,16 @@
 <template>
-  <v-navigation-drawer dark v-model="navDrawer">
+  <v-navigation-drawer dark absolute hide-overlay v-model="navDrawer">
     <v-toolbar flat class="transparent">
       <v-list class="pa-0">
-        <v-list-tile avatar to="/" exact>
+        <v-list-tile avatar>
           <v-list-tile-avatar v-if="hasUser">
             <img src="https://randomuser.me/api/portraits/men/85.jpg" />
           </v-list-tile-avatar>
-          <v-list-tile-content v-if="hasUser">
+          <v-list-tile-content v-if="hasUser" @click="handleClick">
             <v-list-tile-title>Hangouts</v-list-tile-title>
           </v-list-tile-content>
           <v-list-tile-action class="nav-back-icon">
-            <v-btn icon @click.native.stop="toggleNav">
+            <v-btn icon @click.native.stop="closeNav">
               <v-icon>chevron_left</v-icon>
             </v-btn>
           </v-list-tile-action>
@@ -20,10 +20,10 @@
     <v-list class="pt-0" dense>
       <v-divider></v-divider>
       <v-list-tile v-for="item in items" :key="item.title" :to="item.nav">
-        <v-list-tile-action @click="toggleNav">
+        <v-list-tile-action>
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-tile-action>
-        <v-list-tile-content @click="toggleNav">
+        <v-list-tile-content>
           <v-list-tile-title>{{ item.title }}</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
@@ -68,11 +68,11 @@ export default {
     }
   },
   methods: {
-    toggleNav: function () {
-      this.$store.dispatch('toggleNavDrawer')
+    closeNav: function () {
+      this.$store.dispatch('closeNavDrawer')
     },
     handleClick: function () {
-      console.log('I was clicked!')
+      this.$router.push('/')
     }
   }
 }
@@ -86,5 +86,8 @@ li {
 .nav-back-icon {
     position: absolute;
     right: 24px;
+}
+.list__tile__title {
+  cursor: pointer;
 }
 </style>

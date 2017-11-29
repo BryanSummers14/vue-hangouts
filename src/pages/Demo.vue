@@ -1,7 +1,7 @@
 <template>
     <section class="demo-page">
         <div class="demo-content">
-            <user-card></user-card>
+            <h1>Demo</h1>
         </div>
     </section>
 </template>

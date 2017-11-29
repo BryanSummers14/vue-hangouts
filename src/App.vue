@@ -5,8 +5,10 @@
     <header>
       <app-header></app-header>
     </header>
-    <main @click="onBodyClick">
+    <main>
+      <transition name="view-change" mode="out-in">
       <router-view></router-view>
+      </transition>
     </main>
     </v-app>
   </div>
@@ -28,7 +30,12 @@ export default {
   },
   methods: {
     onBodyClick: function () {
-      this.$store.dispatch('toggleNavDrawer')
+      this.$store.dispatch('closeNavDrawer')
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      this.$store.dispatch('closeNavDrawer')
     }
   }
 }
@@ -49,6 +56,13 @@ body {
 main {
   text-align: center;
   margin-top: 40px;
+}
+
+.view-change-enter-active, .view-change-leave-active {
+  transition: opacity .5s
+}
+.view-change-enter, .view-change-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0
 }
 
 </style>
